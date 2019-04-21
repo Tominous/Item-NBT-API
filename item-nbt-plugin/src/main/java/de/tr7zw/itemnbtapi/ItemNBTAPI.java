@@ -191,12 +191,12 @@ public class ItemNBTAPI extends JavaPlugin {
             ItemMeta premeta = preitem.getItemMeta();
             premeta.setDisplayName("test");
             preitem.setItemMeta(premeta);
-            // String itemasString = NBTItem.convertItemtoNBT(preitem).asNBTString();
-            //ItemStack afteritem = NBTItem.convertNBTtoItem(new NBTContainer(itemasString));
-            //if(!preitem.isSimilar(afteritem)){
-            //    getLogger().warning("Wasn't able to convert an Item to String and back to Item! The Item-NBT-API may not work!");
-            //   compatible = false;
-            //}
+             String itemasString = NBTItem.convertItemtoNBT(preitem).asNBTString();
+            ItemStack afteritem = NBTItem.convertNBTtoItem(new NBTContainer(itemasString));
+            if(!preitem.isSimilar(afteritem)){
+                getLogger().warning("Wasn't able to convert an Item to String and back to Item! The Item-NBT-API may not work!");
+               compatible = false;
+            }
             //mergingtags
             NBTContainer test1 = new NBTContainer();
             test1.setString("test1", "test");
@@ -225,7 +225,7 @@ public class ItemNBTAPI extends JavaPlugin {
                     compatible = false;
                     ex.printStackTrace();
                 }
-              /*  try {
+                try {
                     Block block = world.getBlockAt(world.getSpawnLocation().getBlockX(), 255, world.getSpawnLocation().getBlockZ());
                     if (block.getType() == Material.AIR) {
                         getLogger().info("Testing Tile NBT!");
@@ -241,7 +241,7 @@ public class ItemNBTAPI extends JavaPlugin {
                     getLogger().warning("Wasn't able to use NBTTiles! The Item-NBT-API may not work!");
                     compatible = false;
                     ex.printStackTrace();
-                }*/
+                }
             }
 
         } catch (Exception ex) {
